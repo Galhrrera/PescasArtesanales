@@ -13,4 +13,4 @@ eel.init("www")
 
 
 #Aquí los métodos
-eel.start("pescas.html")
+eel.start("pescas.html", size=(1920,1080), position=(0,0)) #El tamaño será 1920 x 1080 y se iniciará en la posicón 0,0 (ocupará toda la pantalla en un monitor 1080)
