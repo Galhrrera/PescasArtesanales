@@ -83,7 +83,7 @@ hr {
 }
 
 /* TABLAS */
-table {
+#data {
     align-self: center;
     margin: 15px auto;
     text-align: center;
@@ -92,4 +92,3 @@ table {
     border: var(--text_color) 2px solid;
     width: 80%;
 }
-
