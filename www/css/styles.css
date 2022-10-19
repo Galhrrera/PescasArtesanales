@@ -81,3 +81,15 @@ hr {
 .nav ul li a {
     text-decoration: none;
 }
+
+/* TABLAS */
+table {
+    align-self: center;
+    margin: 15px auto;
+    text-align: center;
+    justify-content: center;
+    border-spacing: 0;
+    border: var(--text_color) 2px solid;
+    width: 80%;
+}
+
