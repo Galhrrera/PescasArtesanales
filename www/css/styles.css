@@ -16,10 +16,30 @@
 
 #sidebar {
     width: 25%;
+    float: left;
 }
 
-#content {
-    margin-left: 25%;
+.content {
+    /*margin-left: 25%;*/
+    /*margin: 20px;*/
+    width: 75%;
+    float: right;
+    text-align: center;
+}
+
+.content h1 {
+    border-bottom: var(--text_color) solid 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 72px;
+    padding-bottom: 72px;
+}
+
+hr {
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .logo {
@@ -44,4 +64,20 @@
     display: block;
     margin: auto;
     max-width: 25%;
+}
+
+/* NAV */
+.opt_nav {
+    margin-left: 20%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+
+}
+
+.nav ul {
+    list-style: none;
+}
+
+.nav ul li a {
+    text-decoration: none;
 }
