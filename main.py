@@ -21,11 +21,11 @@ def select(table_name):
     except:
         print("Error al conectar con la base de datos")
     cursor = conn.cursor()
-    l_ans = []
+    lista_registros = []
     for row in cursor.execute("SELECT * FROM " + table_name):
-        l_ans.append(row)
+        lista_registros.append(row)
     conn.close()
-    encoded = json.dumps(l_ans, ensure_ascii=False).encode('utf8')
+    encoded = json.dumps(lista_registros, ensure_ascii=False).encode('utf8')
     decoded = encoded.decode()
     return decoded
 

@@ -7,6 +7,9 @@
     --border_color: whitesmoke;
     --slidebar_background: #1c0d02;
     --text_hover: #a5a5a5;
+    --create_buton_background: #4CAF50;
+    --updtae_buton_background: #008CBA;
+    --delete_buton_background: #f44336;
 }
 
 * {
@@ -113,6 +116,134 @@ hr {
 
 /* CRUD OPTS */
 .crud_opts {
-    margin: 35px;
+    margin: 35px auto;
+    width: 80%;
+    text-align: center;
+    justify-content: center;
     border: var(--border_color) 2px solid;
+}
+
+.crud_title {
+    margin: 20px;
+}
+
+.box h4 {
+    margin: 20px;
+}
+
+.crud_input {
+    border: 0;
+    border-bottom: 2px solid var(--text_hover);
+    outline: 0;
+    font-size: 1.3rem;
+    color: var(--text_color);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.crud_btn {
+    margin: 20px;
+}
+
+.crud_select {
+    background-color: var(--text_color);
+    width: 25%;
+    height: 25px;
+    cursor: pointer;
+    color: var(--slidebar_background);
+    border-radius: 8px;
+
+
+}
+
+/* BOTONES CRUD */
+.btn_crud_menu {
+    margin: 25px;
+    width: 15%;
+    height: 40px;
+    color: var(--text_color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.create {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--create_buton_background);
+}
+
+.create:hover {
+    background-color: var(--create_buton_background);
+    color: var(--text_color);
+}
+
+.update {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--updtae_buton_background);
+}
+
+.update:hover {
+    background-color: var(--updtae_buton_background);
+    color: var(--text_color);
+}
+
+.delete {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--delete_buton_background);
+}
+
+.delete:hover {
+    background-color: var(--delete_buton_background);
+    color: var(--text_color);
+}
+
+.crud_btn {
+    margin: 25px;
+    width: 15%;
+    height: 40px;
+    color: var(--text_color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.crud_create {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--create_buton_background);
+}
+
+.crud_create:hover {
+    background-color: var(--create_buton_background);
+    color: var(--text_color);
+}
+
+.crud_update {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--updtae_buton_background);
+}
+
+.crud_update:hover {
+    background-color: var(--updtae_buton_background);
+    color: var(--text_color);
+}
+
+.crud_delete {
+    background-color: var(--text_color);
+    color: var(--slidebar_background);
+    border: 2px solid var(--delete_buton_background);
+}
+
+.crud_delete:hover {
+    background-color: var(--delete_buton_background);
+    color: var(--text_color);
 }
