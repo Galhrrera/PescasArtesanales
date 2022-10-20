@@ -29,6 +29,33 @@ def select(table_name):
     decoded = encoded.decode()
     return decoded
 
+@eel.expose
+def create(table_name, args):
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+    except:
+        print("Error al conectar con la base de datos")
+    cursor = conn.cursor()
+    if table_name == "metodos" or table_name == "cuencas":
+        query = "INSERT INTO " + table_name + " (nombre) VALUES (?)"
+        cursor.execute(query, [args])
+        conn.commit()
+    conn.close()
+
+#Update
+@eel.expose
+def update(table_name, args):
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+    except:
+        print("Error al conectar con la base de datos")
+    cursor = conn.cursor()
+    if table_name == "metodos" or table_name == "cuencas":
+        query = "UPDATE " + table_name + " SET nombre=(?) WHERE codigo=(?);"
+        cursor.execute(query, [args[1], args[0]])
+        conn.commit()
+    conn.close()
+
 
 #Start app
 eel.start("pescas.html", size=(1920,1080), position=(0,0)) #El tamaño será 1920 x 1080 y se iniciará en la posicón 0,0 (ocupará toda la pantalla en un monitor 1080)

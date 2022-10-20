@@ -7,6 +7,23 @@ function update_table() {
     eel.select(table_name)(get_data);
 }
 
+// CREATE
+document.querySelector(".crud_create").onclick = function (){ 
+    alert("Entra al metodo");
+    create_name = document.getElementById("create_name");
+    //clean_msgs();
+    if(!create_name.value) {       
+        alert("La entrada no puede estar vacía");
+    }
+    else {
+        alert(table_name)
+        eel.create(table_name,create_name.value);
+        update_table();
+        alert("Elemento agregado exitosamente");
+    }
+    clean_inputs();
+}  
+
 // READ
 window.onload = function () {
     eel.select(table_name)(get_data);
