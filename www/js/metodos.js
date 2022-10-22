@@ -16,13 +16,12 @@ document.querySelector(".crud_create").onclick = function (){
         alert("La entrada no puede estar vacía");
     }
     else {
-        //alert(table_name)
         try {
             eel.create(table_name,create_name.value);
             update_table();
             alert("Elemento agregado exitosamente");
         } catch (error) {
-            alert(error)
+            console.log(error)
         }
     }
     clean_inputs();
@@ -54,13 +53,32 @@ document.querySelector(".crud_update").onclick = function (){
         alert("La entrada no puede estar vacía");
     }
     else {
-        eel.update(table_name, update_args);
-        update_table();
-        alert("Elemento actualizado exitosamente");
-        console.log("Elemento actualizado exitosamente" + update_args);
+        try {
+            eel.update(table_name, update_args);
+            update_table();
+            alert("Elemento actualizado exitosamente");
+        } catch (error) {
+            console.log(error);
+        }
     }
     clean_inputs();
 } 
+
+//DELETE
+document.querySelector(".crud_delete").onclick = function (){ 
+    delete_id = document.getElementById("delete_id");
+
+    //clean_msgs();
+    if(!delete_id.value){
+        alert("Debe seleccionar una opción");
+    }
+    else {
+        eel.delete(table_name, delete_id.value);
+        update_table();
+        alert("Elemento eliminado exitosamente");
+    }
+    clean_inputs();
+}
 
 //Limpiar inputs
 function clean_inputs() {

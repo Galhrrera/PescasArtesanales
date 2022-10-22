@@ -1,3 +1,4 @@
+from distutils.log import error
 import eel
 import sys
 import  sqlite3 as sql
@@ -62,15 +63,43 @@ def create(table_name, args):
 #Update
 @eel.expose
 def update(table_name, args):
+    print(args)
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+    except:
+        print("Error al conectar con la base de datos")
+    cursor = conn.cursor()
+    if table_name == "metodos":
+        try:
+            query = "UPDATE " + table_name + " SET metodo=(?) WHERE id_metodo=(?);"
+            cursor.execute(query, [args[1], args[0]])
+            conn.commit()
+        except:
+            print("Error al actualizar tabla métodos")
+    elif (table_name == "cuencas"):
+        try:
+            query = "UPDATE " + table_name + " SET cuenca=(?) WHERE id_cuenca=(?);"
+            cursor.execute(query, [args[1], args[0]])
+            conn.commit()
+        except:
+            print("Error al actualizar tabla cuencas")
+    conn.close()
+    
+#Delete
+@eel.expose
+def delete(table_name, args):
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
     except:
         print("Error al conectar con la base de datos")
     cursor = conn.cursor()
     if table_name == "metodos" or table_name == "cuencas":
-        query = "UPDATE " + table_name + " SET nombre=(?) WHERE codigo=(?);"
-        cursor.execute(query, [args[1], args[0]])
-        conn.commit()
+        try:
+            query = "DELETE FROM " + table_name + " WHERE id_metodo=(?);"
+            cursor.execute(query, [args])
+            conn.commit()
+        except:
+            print("Error al eliminar un dato en la tabla: "+table_name)
     conn.close()
 
 
