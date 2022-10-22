@@ -16,10 +16,14 @@ document.querySelector(".crud_create").onclick = function (){
         alert("La entrada no puede estar vacía");
     }
     else {
-        alert(table_name)
-        eel.create(table_name,create_name.value);
-        update_table();
-        alert("Elemento agregado exitosamente");
+        //alert(table_name)
+        try {
+            eel.create(table_name,create_name.value);
+            update_table();
+            alert("Elemento agregado exitosamente");
+        } catch (error) {
+            alert(error)
+        }
     }
     clean_inputs();
 }  

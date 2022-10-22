@@ -31,16 +31,33 @@ def select(table_name):
 
 @eel.expose
 def create(table_name, args):
+    column_name = ""
+    
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
     except:
         print("Error al conectar con la base de datos")
     cursor = conn.cursor()
-    if table_name == "metodos" or table_name == "cuencas":
-        query = "INSERT INTO " + table_name + " (nombre) VALUES (?)"
-        cursor.execute(query, [args])
-        conn.commit()
+    
+    if(table_name == "metodos"):
+        try:
+            query = "INSERT INTO " + table_name + "(metodo) VALUES (?)"
+            cursor.execute(query,[args])
+            conn.commit()
+        except:
+            print("Error en query en tabla métodos")
+    elif (table_name == "cuencas"):
+        try:
+            query = "INSERT INTO " + table_name + "(cuenca) VALUES (?)"
+            cursor.execute(query,args)
+            conn.commit()
+        except:
+            print("Error en query en tabla cuencas")
+
+
     conn.close()
+
+
 
 #Update
 @eel.expose
