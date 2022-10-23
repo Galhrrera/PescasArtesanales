@@ -35,10 +35,31 @@
             <div class="create_opt" id="create_opt">
                 <p class="crud_title">CREAR</p>
                 <!--<hr>-->
+                <!--
                 <div class="box">
                     <h4>Nombre del municipio</h4>
                     <input type="text" class="crud_input" id="create_name" placeholder="Nombre del municipio">
                 </div>
+                -->
+                <div class="inputs_create_pescas">
+                    <div class="cuenca">
+                        <h4>Cuenca</h4>
+                        <select name="cuencas" id="select_cuencas" class="crud_select crud_select_create_pescas"></select>
+                    </div>
+                    <div class="metodo">
+                        <h4>Método</h4>
+                        <select name="metodos" id="select_metodos" class="crud_select crud_select_create_pescas"></select>
+                    </div>
+                    <div class="fecha">
+                        <h4>Fecha</h4>
+                        <input type="date" name="fecha" id="input_fecha" class="crud_select crud_date">
+                    </div>
+                    <div class="peso">
+                        <h4>Peso</h4>
+                        <input type="number" name="peso" id="input_peso" class="crud_input" placeholder="Ej: 52.3">
+                    </div>
+                </div>
+
                 <button class="crud_btn crud_create">Agregar</button>
             </div>
             <div class="update_opt" id="update_opt">

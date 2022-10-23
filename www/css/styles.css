@@ -96,11 +96,32 @@ hr {
     width: 80%;
 }
 
+th {
+    padding: 5px;
+    background-color: #00FFFF;
+    color: var(--slidebar_background);
+    font-weight: bold;
+}
+
+td {
+    padding: 5px;
+}
 /*
-.table_content thead tr {
-    background-color: red;
+.tables {
+    height: 150px;
+    overflow-y: scroll;
 }
 */
+/*
+.tables {
+    border-collapse: collapse;
+}
+
+tr:nth-child(n + 6) {
+    visibility: hidden;
+}
+*/
+
 
 
 /*CONTENT*/
@@ -155,7 +176,7 @@ hr {
 .crud_select {
     background-color: var(--text_color);
     width: 25%;
-    height: 25px;
+    height: 40px;
     cursor: pointer;
     color: var(--slidebar_background);
     border-radius: 8px;
@@ -253,3 +274,35 @@ hr {
     background-color: var(--delete_buton_background);
     color: var(--text_color);
 }
+
+/* DIVS PESCAS */
+.inputs_create_pescas {
+    display: flex;
+    /*align-items: flex-end;*/
+}
+
+.cuenca {
+    width: 25%;
+}
+
+.metodo {
+    width: 25%;
+}
+
+.fecha {
+    width: 25%;
+}
+
+.peso{
+    width: 25%;
+}
+
+.crud_date {
+    width: 150px;
+    text-align: center;
+}
+
+.crud_select_create_pescas {
+    width: 150px;
+}
+

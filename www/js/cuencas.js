@@ -9,9 +9,7 @@ function update_table() {
 
 // CREATE
 document.querySelector(".crud_create").onclick = function (){ 
-    alert("Entra al metodo");
     create_name = document.getElementById("create_name");
-    //clean_msgs();
     if(!create_name.value) {       
         alert("La entrada no puede estar vacía");
     }
@@ -48,7 +46,6 @@ document.querySelector(".crud_update").onclick = function (){
     update_id = document.getElementById("update_id");
     update_new_name = document.getElementById("update_name");
     update_args = [update_id.value, update_new_name.value];
-    //clean_msgs();
     if(!update_args[0] || !update_args[1]) {
         alert("La entrada no puede estar vacía");
     }
@@ -68,7 +65,6 @@ document.querySelector(".crud_update").onclick = function (){
 document.querySelector(".crud_delete").onclick = function (){ 
     delete_id = document.getElementById("delete_id");
 
-    //clean_msgs();
     if(!delete_id.value){
         alert("Debe seleccionar una opción");
     }
