@@ -41,6 +41,7 @@ def select(table_name):
 
     return decoded
 
+#Create cuencas & metodos
 @eel.expose
 def create(table_name, args):
     
@@ -51,15 +52,23 @@ def create(table_name, args):
         columna=""
         if(table_name=="metodos"):
             columna = "metodo"
+            query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
         elif(table_name == "cuencas"):
             columna="cuenca"
+            query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
+        elif(table_name=="pescas"):
+            #columna id_cuenca
+            #columna id_metodo
+            #columna fecha
+            #columna peso
+            query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
             
-        query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
+        #query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
         cursor.execute(query,[args])
         conn.commit()
-        print(columna+" creada satisfactoriamente")
-    except sql.Error as erros:
-        print("Error al crear registro en la base de datos - ",erros)
+        print(columna+": registro creado satisfactoriamente")
+    except sql.Error as error:
+        print("Error al crear registro en la base de datos - ",error)
     finally:
         if conn:
             conn.close()
@@ -67,7 +76,7 @@ def create(table_name, args):
 
 
 
-#Update
+#Update cuencas & metodos
 @eel.expose
 def update(table_name, args):
     try:
@@ -85,15 +94,15 @@ def update(table_name, args):
         query = "UPDATE " + table_name + " SET "+columna+"=(?) WHERE "+id_column+"=(?);"
         cursor.execute(query, [args[1], args[0]])
         conn.commit()
-        print("Elemento en ", columna, "Actualizado satisfactoriamente")
+        print("Registo en ", columna, "Actualizado satisfactoriamente")
     except sql.Error as error:
-        print("Error al conectar con la base de datos", error)
+        print("Error al Actualizar el registro en la base de datos", error)
     finally:
         if conn:
             conn.close()
             print("La conexión a la base de datos ha finalizado...")
     
-#Delete
+#Delete 
 @eel.expose
 def delete(table_name, args):
     try:
@@ -106,14 +115,14 @@ def delete(table_name, args):
             query = "DELETE FROM " + table_name + " WHERE id_metodo=(?);"
             cursor.execute(query, [args])
             conn.commit()
-        except sql.Error as erros:
+        except sql.Error as error:
             print("Error al eliminar un dato en la tabla: "+table_name+" - "+error)
     elif table_name == "cuencas":
         try:
             query = "DELETE FROM " + table_name + " WHERE id_cuenca=(?);"
             cursor.execute(query, [args])
             conn.commit()
-        except sql.Error as erros:
+        except sql.Error as error:
             print("Error al eliminar un dato en la tabla: "+table_name+" - "+error)
     conn.close()
 

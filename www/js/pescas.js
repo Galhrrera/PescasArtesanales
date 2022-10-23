@@ -4,6 +4,32 @@ console.log("El nombre de la página y de la tabla es: "+titulo);
 var selectMetodos = document.getElementById("select_metodos");
 var selectCuencas = document.getElementById("select_cuencas")
 // CREATE
+document.querySelector(".crud_create").onclick = function(){
+    id_cuenca = document.getElementById("select_cuencas");
+    id_metodo = document.getElementById("select_metodos");
+    fecha = document.getElementById("input_fecha");
+    peso = document.getElementById("input_peso");
+    args = [id_cuenca.value ,id_metodo.value, fecha.value, peso.value];
+    //alert(args);
+    if(!args[0] || !args[1] || !args[2] || !args[3]){
+        if (args[0]==null){
+            alert("Debe seleccionar una cuenca");
+            //Clean inputs
+        }
+        else if (args[1]==null){
+            alert("Debe seleccionar unmétodo de pesca");
+            //clean inputs
+        }
+        else if(args[2]==null){
+            alert("Debe seleccionar una fecha");
+            //clean inputs
+        }
+        else if(args[3]==null){
+            alert("Debe indicar el peso de la pesca");
+            //clean inputs
+        }
+    }
+}
 
 // READ
 window.onload = function() {
