@@ -6,6 +6,7 @@ import  sqlite3 as sql
 import json
 
 from pyparsing import col
+from sympy import arg
 
 
 #Conexión a la base de datos
@@ -73,7 +74,24 @@ def create(table_name, args):
         if conn:
             conn.close()
             print("La conexión a la base de datos ha finalizado...")
-
+            
+#Create pescas            
+@eel.expose
+def create_pescas(table_name, args):
+    print("MÉTODO CREAR PESCAS")
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+        print("Conectado a la base de datos para ejecutar create...")
+        cursor = conn.cursor()
+        query = "INSERT INTO " + table_name + " (id_cuenca, id_metodo, fecha, peso_pesca) VALUES (?, ?, ?, ?)"
+        cursor.execute(query, args)
+        conn.commit()
+    except sql.Error as error:
+        print("Error al crear registro en la base de datos - ",error)
+    finally:
+        if conn:
+            conn.close()
+            print("La conexión a la base de datos ha finalizado...")
 
 
 #Update cuencas & metodos

@@ -3,8 +3,31 @@ console.log("El nombre de la página y de la tabla es: "+titulo);
 
 var selectMetodos = document.getElementById("select_metodos");
 var selectCuencas = document.getElementById("select_cuencas")
+
+// READ
+window.onload = function() {
+    eel.select(titulo)(fill_table);
+    eel.select("metodos")(loadSelectMetodos)
+    eel.select("cuencas")(loadSelectCuencas)
+}
+
+function fill_table(output) {
+    json_list = JSON.parse(output);
+    string = "<tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th>";
+    json_list.forEach(row => string = string.concat("<tr><td>", row[0], "</td><td>", row[1], "</td><td>", row[2], "</td><td>", row[3], "</td><td>", row[4], "</tr>"));
+    document.getElementById("data").innerHTML = string;
+}
+
+//Actuaizar tablas
+function update_table(){
+    eel.select(titulo)(fill_table);
+    eel.select("metodos")(loadSelectMetodos)
+    eel.select("cuencas")(loadSelectCuencas)
+}
+
 // CREATE
-document.querySelector(".crud_create").onclick = function(){
+document.querySelector(".crud_create").onclick = function (){
+    alert("entra a create de pescas");
     id_cuenca = document.getElementById("select_cuencas");
     id_metodo = document.getElementById("select_metodos");
     fecha = document.getElementById("input_fecha");
@@ -29,20 +52,18 @@ document.querySelector(".crud_create").onclick = function(){
             //clean inputs
         }
     }
+    else{
+        try{
+            eel.create_pescas(titulo, args);
+            update_table();
+            alert("Pesca creada correctamente");
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
 }
 
-// READ
-window.onload = function() {
-    eel.select(titulo)(fill_table);
-    eel.select("metodos")(loadSelectMetodos)
-    eel.select("cuencas")(loadSelectCuencas)
-}
-function fill_table(output) {
-    json_list = JSON.parse(output);
-    string = "<tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th>";
-    json_list.forEach(row => string = string.concat("<tr><td>", row[0], "</td><td>", row[1], "</td><td>", row[2], "</td><td>", row[3], "</td><td>", row[4], "</tr>"));
-    document.getElementById("data").innerHTML = string;
-}
 // UPDATE
 
 // DELETE
