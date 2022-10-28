@@ -17,7 +17,7 @@ var modalText = document.getElementById("modal_text");
 
 
 
-closeModalBtn.onclick = function() {
+closeModalBtn.onclick = function () {
     modal.style.display = "none";
 }
 
@@ -40,7 +40,7 @@ function clean_inputs() {
 
 function get_data(output) {
     json_list = JSON.parse(output);
-    string = "<tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th>";
+    string = "<thead><tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th></thead>";
     json_list.forEach(row => string = string.concat("<tr><td>", row[0], "</td><td>", row[1], "</td><td>", row[2], "</td><td>", row[3], "</td><td>", row[4], "</tr>"));
     document.getElementById("data").innerHTML = string;
 }
@@ -91,7 +91,7 @@ document.querySelector(".crud_create").onclick = function () {
             console.log(error);
         }
     }
-    modal.style.display="block"
+    modal.style.display = "block"
     modalText.innerHTML = "Pesca creada correctamente";
 }
 
@@ -105,20 +105,26 @@ document.querySelector(".crud_update").onclick = function () {
     update_new_peso = document.getElementById("input_peso_update");
     update_args = [update_id_value, update_new_cuenca.value, update_new_metodo.value, update_new_fecha.value, update_new_peso.value];
 
-    alert(update_args);
-    if (!update_args[0] || !update_args[1]) {
-        alert("La entrada no puede estar vacía");
+    //alert(update_args);
+    if (!update_args[0] || !update_args[1] || !update_args[2] || !update_args[3] || !update_args[4]) {
+        //alert("La entrada no puede estar vacía");
+        clean_inputs()
+        modal.style.display = "block"
+        modalText.innerHTML = "Todas las entradas deben tener datos";
     }
     else {
         try {
             eel.updatePescas(table_name, update_args);
             update_table();
-            alert("Elemento actualizado exitosamente");
+            //alert("Elemento actualizado exitosamente");
+            modal.style.display = "block"
+            modalText.innerHTML = "Pesca Actualizada correctamente";
         } catch (error) {
             console.log(error);
         }
     }
     clean_inputs()
+
 }
 // DELETE
 document.querySelector(".crud_delete").onclick = function () {
@@ -168,12 +174,12 @@ function loadSelectPescas(output) {
     selectPescasDelete.innerHTML = string_select_delete
 }
 
-closeModalBtn.onclick = function() {
+closeModalBtn.onclick = function () {
     modal.style.display = "none";
 }
-  
-window.onclick = function(event) {
+
+window.onclick = function (event) {
     if (event.target == modal) {
-      modal.style.display = "none";
+        modal.style.display = "none";
     }
 }
