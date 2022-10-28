@@ -10,7 +10,7 @@ var selectCuencasUpdate = document.getElementById("select_cuencas_update")
 
 // READ
 window.onload = function () {
-    eel.select(titulo)(get_data);
+    eel.select(table_name)(get_data);
     eel.select("metodos")(loadSelectMetodos)
     eel.select("cuencas")(loadSelectCuencas)
     eel.select("pescas")(loadSelectPescas)
@@ -25,10 +25,7 @@ function get_data(output) {
 
 //Actuaizar tablas
 function update_table() {
-    eel.select(titulo)(get_data);
-    eel.select("metodos")(loadSelectMetodos)
-    eel.select("cuencas")(loadSelectCuencas)
-    eel.select("pescas")(loadSelectPescas)
+    eel.select(table_name)(get_data);
 }
 
 // CREATE
@@ -73,29 +70,31 @@ document.querySelector(".crud_create").onclick = function () {
 // UPDATE
 document.querySelector(".crud_update").onclick = function () {
     update_id = document.getElementById("update_id");
+    update_id_value = update_id.value
     /*
     update_new_name = document.getElementById("update_name");
     update_args = [update_id.value, update_new_name.value];
     */
-    update_new_cuenca = document.getElementById("select_cuencas");
-    update_new_metodo = document.getElementById("select_metodos");
-    update_new_fecha = document.getElementById("input_fecha");
-    update_new_peso = document.getElementById("input_peso");
-    update_args = [update_new_cuenca.value, update_new_metodo.value, update_new_fecha.value, update_new_fecha.value, update_new_peso.value];
+    update_new_cuenca = document.getElementById("select_cuencas_update");
+    update_new_metodo = document.getElementById("select_metodos_update");
+    update_new_fecha = document.getElementById("input_fecha_update");
+    update_new_peso = document.getElementById("input_peso_update");
+    update_args = [update_id_value, update_new_cuenca.value, update_new_metodo.value, update_new_fecha.value, update_new_peso.value];
 
+    alert(update_args);
     if (!update_args[0] || !update_args[1]) {
         alert("La entrada no puede estar vacía");
     }
     else {
         try {
-            eel.update(table_name, update_args);
+            eel.updatePescas(table_name, update_args);
             update_table();
             alert("Elemento actualizado exitosamente");
         } catch (error) {
             console.log(error);
         }
     }
-    clean_inputs();
+    //clean_inputs();
 }
 // DELETE
 document.querySelector(".crud_delete").onclick = function () {
@@ -105,11 +104,12 @@ document.querySelector(".crud_delete").onclick = function () {
         alert("Debe seleccionar una opción");
     }
     else {
+        alert(delete_id.value)
         eel.delete(table_name, delete_id.value);
         update_table();
         alert("Elemento eliminado exitosamente");
     }
-    clean_inputs();
+    //clean_inputs();
 }
 
 //ADICIONALES
@@ -117,7 +117,6 @@ function loadSelectMetodos(output) {
     json_list = JSON.parse(output);
     string_select = "<option disabled selected value style='color:whitesmoke'></option>";
     json_list.forEach(row => string_select = string_select.concat("<option value='", row[0], "'>", row[0], " - ", row[1], "</option>"));
-    alert(string_select)
     selectMetodos.innerHTML = string_select;
     selectMetodosUpdate.innerHTML = string_select;
 }

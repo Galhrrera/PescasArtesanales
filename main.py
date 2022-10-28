@@ -25,6 +25,7 @@ def select(table_name):
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
         print("Conectado a la base de datos para ejecutar select...")
+        print("TABLA: ", table_name)
         cursor = conn.cursor()
         lista_registros = []
         for row in cursor.execute("SELECT * FROM " + table_name):
@@ -83,8 +84,10 @@ def create_pescas(table_name, args):
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
         print("Conectado a la base de datos para ejecutar create...")
         cursor = conn.cursor()
-        query = "INSERT INTO " + table_name + " (id_cuenca, id_metodo, fecha, peso_pesca) VALUES (?, ?, ?, ?)"
-        cursor.execute(query, args)
+        #query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
+        query = "INSERT INTO pescas (id_cuenca, id_metodo, fecha, peso_pesca) VALUES (?, ?, ?, ?)"
+        print(query)
+        cursor.execute(query, [args[0], args[1], args[2], args[3]])
         conn.commit()
     except sql.Error as error:
         print("Error al crear registro en la base de datos - ",error)
@@ -119,10 +122,37 @@ def update(table_name, args):
         if conn:
             conn.close()
             print("La conexión a la base de datos ha finalizado...")
-    
+
+#Update pescas
+@eel.expose
+def updatePescas(table_name, args):
+    print("update pescas")
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+        cursor = conn.cursor()
+        if (table_name =="pescas"):
+            '''
+            columna = "metodo"
+            id_column = "id_metodo"
+        elif(table_name=="cuencas"):
+            columna="cuenca"
+            id_column = "id_cuenca"
+        '''
+        #query = "UPDATE " + table_name + " SET "+columna+"=(?) WHERE "+id_column+"=(?);"
+        query = "UPDATE "+ table_name + " SET id_cuenca = (?), id_metodo = (?), fecha = (?), peso_pesca = (?) WHERE id_pesca = (?)"
+        cursor.execute(query, [args[1], args[2], args[3], args[4], args[0]])
+        conn.commit()
+        print("Registo en ", table_name, "Actualizado satisfactoriamente")
+    except sql.Error as error:
+        print("Error al Actualizar el registro en la base de datos", error)
+    finally:
+        if conn:
+            conn.close()
+            print("La conexión a la base de datos ha finalizado...")
 #Delete 
 @eel.expose
 def delete(table_name, args):
+    print("la tabla en la que se va a eliminar el dato es: ", table_name)
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
     except:
@@ -138,6 +168,14 @@ def delete(table_name, args):
     elif table_name == "cuencas":
         try:
             query = "DELETE FROM " + table_name + " WHERE id_cuenca=(?);"
+            cursor.execute(query, [args])
+            conn.commit()
+        except sql.Error as error:
+            print("Error al eliminar un dato en la tabla: "+table_name+" - "+error)
+    elif table_name == "pescas":
+        print("ENTRA AL CONDICIONAL DE TABLA PESCAS DELETE")
+        try:
+            query = "DELETE FROM " + table_name + " WHERE id_pesca=(?);"
             cursor.execute(query, [args])
             conn.commit()
         except sql.Error as error:
