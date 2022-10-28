@@ -65,8 +65,46 @@ document.querySelector(".crud_create").onclick = function (){
 }
 
 // UPDATE
-
+document.querySelector(".crud_update").onclick = function (){ 
+    update_id = document.getElementById("update_id");
+    /*
+    update_new_name = document.getElementById("update_name");
+    update_args = [update_id.value, update_new_name.value];
+    */
+   update_new_cuenca = document.getElementById("select_cuencas");
+   update_new_metodo = document.getElementById("select_metodos");
+   update_new_fecha = document.getElementById("input_fecha");
+   update_new_peso = document.getElementById("input_peso");
+   update_args = [update_new_cuenca.value, update_new_metodo.value, update_new_fecha.value,update_new_fecha.value, update_new_peso.value];
+   
+    if(!update_args[0] || !update_args[1]) {
+        alert("La entrada no puede estar vacía");
+    }
+    else {
+        try {
+            eel.update(table_name, update_args);
+            update_table();
+            alert("Elemento actualizado exitosamente");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    clean_inputs();
+} 
 // DELETE
+document.querySelector(".crud_delete").onclick = function (){ 
+    delete_id = document.getElementById("delete_id");
+
+    if(!delete_id.value){
+        alert("Debe seleccionar una opción");
+    }
+    else {
+        eel.delete(table_name, delete_id.value);
+        update_table();
+        alert("Elemento eliminado exitosamente");
+    }
+    clean_inputs();
+}
 
 //ADICIONALES
 function loadSelectMetodos(output){
@@ -77,6 +115,13 @@ function loadSelectMetodos(output){
 }
 
 function loadSelectCuencas(output){
+    json_list = JSON.parse(output);
+    string_select = "<option disabled selected value style='color:whitesmoke'></option>";
+    json_list.forEach(row => string_select = string_select.concat("<option value='", row[0], "'>", row[0], " - ", row[1], "</option>"));
+    selectCuencas.innerHTML = string_select
+}
+
+function loadSelectPescas(output){
     json_list = JSON.parse(output);
     string_select = "<option disabled selected value style='color:whitesmoke'></option>";
     json_list.forEach(row => string_select = string_select.concat("<option value='", row[0], "'>", row[0], " - ", row[1], "</option>"));
