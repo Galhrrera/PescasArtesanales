@@ -10,6 +10,9 @@
     --create_buton_background: #4CAF50;
     --updtae_buton_background: #008CBA;
     --delete_buton_background: #f44336;
+    --modal_bakground_color: rgb(102,102,102,0.3);
+    --modal_content_background: whitesmoke;
+    --close_modal: #c00000;
 }
 
 * {
@@ -19,6 +22,67 @@
     font-family: 'Roboto', sans-serif;
     color: var(--text_color);
 }
+
+
+/* MODAL */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: var(--modal_bakground_color);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal_content {
+    background-color: var(--modal_content_background);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid var(--slidebar_background);
+    width: 80%;
+}
+
+* h2 {
+    text-align: center;
+    background-color: var(--modal_content_background);
+    color: var(--slidebar_background)
+}
+
+.close_modal {
+    color: var(--slidebar_background);
+    background-color: var(--modal_content_background);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_modal:hover {
+    color: var(--close_modal);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.close:focus {
+    color: var(--close_modal);
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /* SLIDEBAR */
 #sidebar {
@@ -106,6 +170,7 @@ th {
 td {
     padding: 5px;
 }
+
 /*
 .tables {
     height: 150px;
@@ -293,7 +358,7 @@ tr:nth-child(n + 6) {
     width: 25%;
 }
 
-.peso{
+.peso {
     width: 25%;
 }
 
@@ -305,4 +370,3 @@ tr:nth-child(n + 6) {
 .crud_select_create_pescas {
     width: 150px;
 }
-

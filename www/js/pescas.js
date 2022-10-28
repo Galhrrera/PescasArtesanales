@@ -8,12 +8,26 @@ var selectPescasDelete = document.getElementById("delete_id");
 var selectMetodosUpdate = document.getElementById("select_metodos_update");
 var selectCuencasUpdate = document.getElementById("select_cuencas_update")
 
+var modal = document.getElementById("myModal");
+var closeModalBtn = document.getElementById("close");
+
+var btn_Create = document.getElementById("btn_Create");
+
+var modalText = document.getElementById("modal_text");
+
+
+
+closeModalBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
 // READ
 window.onload = function () {
     eel.select(table_name)(get_data);
     eel.select("metodos")(loadSelectMetodos)
     eel.select("cuencas")(loadSelectCuencas)
     eel.select("pescas")(loadSelectPescas)
+    modalText.innerHTML = "";
 }
 
 //Limpiar inputs
@@ -70,13 +84,15 @@ document.querySelector(".crud_create").onclick = function () {
         try {
             eel.create_pescas(titulo, args);
             update_table();
-            alert("Pesca creada correctamente");
+            //alert("Pesca creada correctamente");
             clean_inputs()
         }
         catch (error) {
             console.log(error);
         }
     }
+    modal.style.display="block"
+    modalText.innerHTML = "Pesca creada correctamente";
 }
 
 // UPDATE
@@ -150,4 +166,14 @@ function loadSelectPescas(output) {
     //alert(string_select_delete);
     selectPescasUpdate.innerHTML = string_select_update
     selectPescasDelete.innerHTML = string_select_delete
+}
+
+closeModalBtn.onclick = function() {
+    modal.style.display = "none";
+}
+  
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
 }
