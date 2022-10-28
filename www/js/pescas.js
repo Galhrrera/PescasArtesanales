@@ -16,6 +16,14 @@ window.onload = function () {
     eel.select("pescas")(loadSelectPescas)
 }
 
+//Limpiar inputs
+function clean_inputs() {
+    inputs = document.getElementsByClassName("crud_input");
+    selects = document.getElementsByClassName("crud_select");
+    for (let i of inputs) { i.value = ""; }
+    for (let s of selects) { s.value = ""; }
+}
+
 function get_data(output) {
     json_list = JSON.parse(output);
     string = "<tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th>";
@@ -26,6 +34,9 @@ function get_data(output) {
 //Actuaizar tablas
 function update_table() {
     eel.select(table_name)(get_data);
+    eel.select("cuencas")(loadSelectCuencas);
+    eel.select("metodos")(loadSelectMetodos);
+    eel.select("pescas")(loadSelectPescas);
 }
 
 // CREATE
@@ -60,6 +71,7 @@ document.querySelector(".crud_create").onclick = function () {
             eel.create_pescas(titulo, args);
             update_table();
             alert("Pesca creada correctamente");
+            clean_inputs()
         }
         catch (error) {
             console.log(error);
@@ -71,10 +83,6 @@ document.querySelector(".crud_create").onclick = function () {
 document.querySelector(".crud_update").onclick = function () {
     update_id = document.getElementById("update_id");
     update_id_value = update_id.value
-    /*
-    update_new_name = document.getElementById("update_name");
-    update_args = [update_id.value, update_new_name.value];
-    */
     update_new_cuenca = document.getElementById("select_cuencas_update");
     update_new_metodo = document.getElementById("select_metodos_update");
     update_new_fecha = document.getElementById("input_fecha_update");
@@ -94,7 +102,7 @@ document.querySelector(".crud_update").onclick = function () {
             console.log(error);
         }
     }
-    //clean_inputs();
+    clean_inputs()
 }
 // DELETE
 document.querySelector(".crud_delete").onclick = function () {
@@ -109,7 +117,7 @@ document.querySelector(".crud_delete").onclick = function () {
         update_table();
         alert("Elemento eliminado exitosamente");
     }
-    //clean_inputs();
+    clean_inputs()
 }
 
 //ADICIONALES

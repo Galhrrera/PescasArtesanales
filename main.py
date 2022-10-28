@@ -58,14 +58,7 @@ def create(table_name, args):
         elif(table_name == "cuencas"):
             columna="cuenca"
             query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
-        elif(table_name=="pescas"):
-            #columna id_cuenca
-            #columna id_metodo
-            #columna fecha
-            #columna peso
-            query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
             
-        #query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
         cursor.execute(query,[args])
         conn.commit()
         print(columna+": registro creado satisfactoriamente")
@@ -84,7 +77,6 @@ def create_pescas(table_name, args):
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
         print("Conectado a la base de datos para ejecutar create...")
         cursor = conn.cursor()
-        #query = "INSERT INTO " + table_name + " (" + columna + ") VALUES (?)"
         query = "INSERT INTO pescas (id_cuenca, id_metodo, fecha, peso_pesca) VALUES (?, ?, ?, ?)"
         print(query)
         cursor.execute(query, [args[0], args[1], args[2], args[3]])
@@ -130,15 +122,6 @@ def updatePescas(table_name, args):
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
         cursor = conn.cursor()
-        if (table_name =="pescas"):
-            '''
-            columna = "metodo"
-            id_column = "id_metodo"
-        elif(table_name=="cuencas"):
-            columna="cuenca"
-            id_column = "id_cuenca"
-        '''
-        #query = "UPDATE " + table_name + " SET "+columna+"=(?) WHERE "+id_column+"=(?);"
         query = "UPDATE "+ table_name + " SET id_cuenca = (?), id_metodo = (?), fecha = (?), peso_pesca = (?) WHERE id_pesca = (?)"
         cursor.execute(query, [args[1], args[2], args[3], args[4], args[0]])
         conn.commit()
