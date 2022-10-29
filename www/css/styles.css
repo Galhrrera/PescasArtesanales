@@ -150,6 +150,16 @@ hr {
 }
 
 /* TABLAS */
+.tables {
+    height: 350px;
+    width: 80%;
+    overflow-y: scroll;
+}
+
+.tables {
+    margin-left: 143px;
+}
+
 #data {
     align-self: center;
     margin: 15px auto;
@@ -160,14 +170,7 @@ hr {
     width: 80%;
 }
 
-.tables {
-    height: 350px;
-    margin-left: 35px auto;
-    margin-right: 35px auto;
-    overflow-y: scroll;
-    border-bottom: var(--text_hover) 2px solid;
 
-}
 
 th {
     position: sticky;

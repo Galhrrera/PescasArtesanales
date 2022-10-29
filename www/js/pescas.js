@@ -55,7 +55,7 @@ function update_table() {
 
 // CREATE
 document.querySelector(".crud_create").onclick = function () {
-    alert("entra a create de pescas");
+    //alert("entra a create de pescas");
     id_cuenca = document.getElementById("select_cuencas");
     id_metodo = document.getElementById("select_metodos");
     fecha = document.getElementById("input_fecha");
@@ -63,36 +63,42 @@ document.querySelector(".crud_create").onclick = function () {
     args = [id_cuenca.value, id_metodo.value, fecha.value, peso.value];
     //alert(args);
     if (!args[0] || !args[1] || !args[2] || !args[3]) {
-        if (args[0] == null) {
-            alert("Debe seleccionar una cuenca");
-            //Clean inputs
+        if(!args[0]) {
+            modal.style.display = "block"
+            modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta Cuenca";
+            clean_inputs();
         }
-        else if (args[1] == null) {
-            alert("Debe seleccionar unmétodo de pesca");
-            //clean inputs
+        else if (!args[1]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta Método";
+            clean_inputs();
         }
-        else if (args[2] == null) {
-            alert("Debe seleccionar una fecha");
-            //clean inputs
+        else if (!args[2]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta fecha";
+            clean_inputs();
         }
-        else if (args[3] == null) {
-            alert("Debe indicar el peso de la pesca");
-            //clean inputs
+        else {
+            modal.style.display = "block"
+            modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta peso";
+            clean_inputs();
         }
+
     }
     else {
         try {
             eel.create_pescas(titulo, args);
             update_table();
             //alert("Pesca creada correctamente");
+            modal.style.display = "block"
+            modalText.innerHTML = "Pesca creada correctamente";
             clean_inputs()
         }
         catch (error) {
             console.log(error);
         }
     }
-    modal.style.display = "block"
-    modalText.innerHTML = "Pesca creada correctamente";
+
 }
 
 // UPDATE
@@ -108,9 +114,31 @@ document.querySelector(".crud_update").onclick = function () {
     //alert(update_args);
     if (!update_args[0] || !update_args[1] || !update_args[2] || !update_args[3] || !update_args[4]) {
         //alert("La entrada no puede estar vacía");
-        clean_inputs()
-        modal.style.display = "block"
-        modalText.innerHTML = "Todas las entradas deben tener datos";
+        if (!update_args[0]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Todas las entradas deben tener datos - Falta la pesca que desea actualizar";
+            clean_inputs()
+        }
+        else if(!update_args[1]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Todas las entradas deben tener datos - Falta Cuenca";
+            clean_inputs()
+        }
+        else if (!update_args[2]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Todas las entradas deben tener datos - Falta Método";
+            clean_inputs()
+        }
+        else if (!update_args[3]){
+            modal.style.display = "block"
+            modalText.innerHTML = "Todas las entradas deben tener datos - Falta fecha";
+            clean_inputs()
+        }
+        else{
+            modal.style.display = "block"
+            modalText.innerHTML = "Todas las entradas deben tener datos - Falta peso";
+            clean_inputs()
+        }
     }
     else {
         try {
@@ -118,7 +146,7 @@ document.querySelector(".crud_update").onclick = function () {
             update_table();
             //alert("Elemento actualizado exitosamente");
             modal.style.display = "block"
-            modalText.innerHTML = "Pesca Actualizada correctamente";
+            modalText.innerHTML = "Pesca "+ update_args[0] +"  Actualizada correctamente";
         } catch (error) {
             console.log(error);
         }
@@ -131,13 +159,16 @@ document.querySelector(".crud_delete").onclick = function () {
     delete_id = document.getElementById("delete_id");
 
     if (!delete_id.value) {
-        alert("Debe seleccionar una opción");
+        modal.style.display = "block"
+        modalText.innerHTML = "Debe seleccionar una pesca";
+        clean_inputs()
     }
     else {
-        alert(delete_id.value)
         eel.delete(table_name, delete_id.value);
         update_table();
-        alert("Elemento eliminado exitosamente");
+        modal.style.display = "block"
+        modalText.innerHTML = "Pesca "+delete_id.value+" eliminada correctamente";
+        clean_inputs()
     }
     clean_inputs()
 }
