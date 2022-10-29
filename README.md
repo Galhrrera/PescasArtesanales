@@ -24,9 +24,11 @@ Una vez se asegure de tener instalado python, google chrome y pip, basta con eje
 ## Ejecución de la aplicación
 La aplicación se puede ejecutar directamente con python tras clonar este repositorio. Siga los siguientes pasos:
 
-1. Clone este repositorio en su ordenador. `git clone https://github.com/Galhrrera/PescasArtesanales.git`
+1. Clone este repositorio en su ordenador ingresando en la terminal el comando: `git clone https://github.com/Galhrrera/PescasArtesanales.git`
 2. Ingrese a la carpeta del proyecto **PescasArtesanales**
 3. En la terminal ejecute el archivo **main.py** utilizando python: `python.exe main.py`
+
+SI cumple con los requisitos mencionados, clonó correctamente el repositorio y no hubieron problemas, tras estos pasos se debería abrir la aplicación haciendo uso del motor de google chrome
 
 
 ## Dominio del problema: Pescas artesanales
