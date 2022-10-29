@@ -18,9 +18,17 @@ Antes de ejecutar la aplicación, es necesario verificar que cumple con os requi
 
 ### Nota
 Una vez se asegure de tener instalado python, google chrome y pip, basta con ejecutar el siguiente comando para descargar e instalar pip:
-`Esto es una línea de código`
+
+`pip install eel`
 
 ## Ejecución de la aplicación
+La aplicación se puede ejecutar directamente con python tras clonar este repositorio. Siga los siguientes pasos:
+
+1. Clone este repositorio en su ordenador. `git clone https://github.com/Galhrrera/PescasArtesanales.git`
+2. Ingrese a la carpeta del proyecto **PescasArtesanales**
+3. En la terminal ejecute el archivo **main.py** utilizando python: `python.exe main.py`
+
+
 ## Dominio del problema: Pescas artesanales
 ## Explicación de la implementación
 ## Comentarios
