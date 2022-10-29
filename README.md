@@ -28,7 +28,8 @@ La aplicación se puede ejecutar directamente con python tras clonar este reposi
 2. Ingrese a la carpeta del proyecto **PescasArtesanales**
 3. En la terminal ejecute el archivo **main.py** utilizando python: `python.exe main.py`
 
-SI cumple con los requisitos mencionados, clonó correctamente el repositorio y no hubieron problemas, tras estos pasos se debería abrir la aplicación haciendo uso del motor de google chrome
+Sí cumple con los requisitos mencionados, clonó correctamente el repositorio y no hubieron problemas, tras estos pasos se debería abrir la aplicación haciendo uso del motor de google chrome y debería poder ver algo como esto:
+![Ventana inicial de la aplicación](https://github.com/Galhrrera/PescasArtesanales/blob/main/imgs/ventanaInicial.png)
 
 
 ## Dominio del problema: Pescas artesanales
