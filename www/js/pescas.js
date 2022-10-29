@@ -40,8 +40,9 @@ function clean_inputs() {
 
 function get_data(output) {
     json_list = JSON.parse(output);
-    string = "<thead><tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th></thead>";
+    string = "<thead><tr><th>Id pesca</th><th>Id cuenca</th><th>Id método</th><th>Fecha</th><th>Total peso</th></thead><tbody>";
     json_list.forEach(row => string = string.concat("<tr><td>", row[0], "</td><td>", row[1], "</td><td>", row[2], "</td><td>", row[3], "</td><td>", row[4], "</tr>"));
+    string = string.concat("</tbody>");
     document.getElementById("data").innerHTML = string;
 }
 
@@ -55,13 +56,11 @@ function update_table() {
 
 // CREATE
 document.querySelector(".crud_create").onclick = function () {
-    //alert("entra a create de pescas");
     id_cuenca = document.getElementById("select_cuencas");
     id_metodo = document.getElementById("select_metodos");
     fecha = document.getElementById("input_fecha");
     peso = document.getElementById("input_peso");
     args = [id_cuenca.value, id_metodo.value, fecha.value, peso.value];
-    //alert(args);
     if (!args[0] || !args[1] || !args[2] || !args[3]) {
         if(!args[0]) {
             modal.style.display = "block"
@@ -89,7 +88,6 @@ document.querySelector(".crud_create").onclick = function () {
         try {
             eel.create_pescas(titulo, args);
             update_table();
-            //alert("Pesca creada correctamente");
             modal.style.display = "block"
             modalText.innerHTML = "Pesca creada correctamente";
             clean_inputs()
@@ -111,9 +109,7 @@ document.querySelector(".crud_update").onclick = function () {
     update_new_peso = document.getElementById("input_peso_update");
     update_args = [update_id_value, update_new_cuenca.value, update_new_metodo.value, update_new_fecha.value, update_new_peso.value];
 
-    //alert(update_args);
     if (!update_args[0] || !update_args[1] || !update_args[2] || !update_args[3] || !update_args[4]) {
-        //alert("La entrada no puede estar vacía");
         if (!update_args[0]){
             modal.style.display = "block"
             modalText.innerHTML = "Todas las entradas deben tener datos - Falta la pesca que desea actualizar";
@@ -144,7 +140,6 @@ document.querySelector(".crud_update").onclick = function () {
         try {
             eel.updatePescas(table_name, update_args);
             update_table();
-            //alert("Elemento actualizado exitosamente");
             modal.style.display = "block"
             modalText.innerHTML = "Pesca "+ update_args[0] +"  Actualizada correctamente";
         } catch (error) {
@@ -192,15 +187,12 @@ function loadSelectCuencas(output) {
 
 function loadSelectPescas(output) {
     json_list = JSON.parse(output);
-    //alert(json_list)
     string_select_update = "<option disabled selected value style='color:whitesmoke'></option>";
     string_select_delete = "<option disabled selected value style='color:whitesmoke'></option>";
     json_list.forEach(row => string_select_update = string_select_update.concat("<option value='", row[0], "'>", row[0], " - ", row[1], " - ", row[2], " - ", row[3],
         " - ", row[4], "</option>"));
     json_list.forEach(row => string_select_delete = string_select_delete.concat("<option value='", row[0], "'>", row[0], " - ", row[1], " - ", row[2], " - ", row[3],
         " - ", row[4], "</option>"));
-    //alert(string_select_update);
-    //alert(string_select_delete);
     selectPescasUpdate.innerHTML = string_select_update
     selectPescasDelete.innerHTML = string_select_delete
 }
