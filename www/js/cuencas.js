@@ -94,7 +94,32 @@ document.querySelector(".crud_delete").onclick = function (){
         clean_inputs();
     }
     else {
-        eel.delete(table_name, delete_id.value);
+        eel.delete(table_name, delete_id.value)(deleteRegistro);
+        /*
+        update_table();
+        modal.style.display = "block"
+        modalText.innerHTML = "Cuenca "+delete_id.value+" eliminada correctamente";
+        clean_inputs();
+        */
+    }
+}
+
+function deleteRegistro(output){
+    clean_inputs();
+    jsonOutput = JSON.parse(output);
+    var tipo = typeof(output);
+
+    let result = output.startWith("[ERROR]");
+    alert (result);
+    
+    if ( output.startWith("[ERROR]")){
+        alert("Entra al método deleteRegistro");
+        modal.style.display = "block"
+        modalText.innerHTML = output;
+        clean_inputs();
+        return
+    }
+    else{
         update_table();
         modal.style.display = "block"
         modalText.innerHTML = "Cuenca "+delete_id.value+" eliminada correctamente";

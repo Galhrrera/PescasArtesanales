@@ -136,6 +136,12 @@ def updatePescas(table_name, args):
 @eel.expose
 def delete(table_name, args):
     print("la tabla en la que se va a eliminar el dato es: ", table_name)
+    if (table_name == "cuencas") and validarUso(args, "pescas", "id_cuenca"):
+        text ="[ERROR]La Cuenca #" + args + " está siendo usada en la tabla Pescas"
+        return json.dumps(text, ensure_ascii=False).encode('utf-8').decode()
+    if (table_name == "metodos") and validarUso(args, "pescas", "id_metodo"):
+        text = "[ERROR]El Metodo #" + args + " está siendo usado en la tabla Pescas"
+        return json.dumps(text, ensure_ascii=False).encode('utf-8').decode()
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
     except:
@@ -164,6 +170,25 @@ def delete(table_name, args):
         except sql.Error as error:
             print("Error al eliminar un dato en la tabla: "+table_name+" - "+error)
     conn.close()
+    
+
+#Validar si un elemento está siendo usado en la tabla pescas
+def validarUso(val, table, column):
+    print(val)
+    print(table)
+    print(column)
+    try:
+        conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")
+    except:
+        print("Error al conectar con la base de datos")
+    cursor = conn.cursor()
+    query = "SELECT COUNT(*) FROM " + table + " WHERE " + column + "=(?)"
+    rows = int(cursor.execute(query, [val]).fetchone()[0])
+    print(rows)
+    if(rows > 0):
+        return True
+    else:
+        return False
 
 
 #Start app
