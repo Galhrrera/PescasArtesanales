@@ -93,13 +93,37 @@ document.querySelector(".crud_delete").onclick = function (){
         clean_inputs();
     }
     else {
-        eel.delete(table_name, delete_id.value);
+        eel.delete(table_name, delete_id.value)(deleteRegistro);
+    }
+}
+
+function deleteRegistro(output) {
+    if (output != null) {
+        clean_inputs();
+        let array = output.split(" ");
+        array[0] = array[0].replace('"', '');
+        if (array[0] == "[ERROR]") {
+            modal.style.display = "block"
+            modalText.innerHTML = output;
+            clean_inputs();
+            return
+        }
+        else {
+            update_table();
+            modal.style.display = "block"
+            modalText.innerHTML = "Método " + delete_id.value + " eliminada correctamente";
+            clean_inputs();
+        }
+    }
+    else {
         update_table();
         modal.style.display = "block"
-        modalText.innerHTML = "El método: "+delete_id.value+" a sido eliminado correctamente";
+        modalText.innerHTML = "Método " + delete_id.value + " eliminada correctamente";
         clean_inputs();
     }
 }
+
+
 
 //Limpiar inputs
 function clean_inputs() {

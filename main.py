@@ -137,10 +137,10 @@ def updatePescas(table_name, args):
 def delete(table_name, args):
     print("la tabla en la que se va a eliminar el dato es: ", table_name)
     if (table_name == "cuencas") and validarUso(args, "pescas", "id_cuenca"):
-        text ="[ERROR]La Cuenca #" + args + " está siendo usada en la tabla Pescas"
+        text ="[ERROR] La Cuenca #" + args + " está siendo usada en la tabla Pescas"
         return json.dumps(text, ensure_ascii=False).encode('utf-8').decode()
     if (table_name == "metodos") and validarUso(args, "pescas", "id_metodo"):
-        text = "[ERROR]El Metodo #" + args + " está siendo usado en la tabla Pescas"
+        text = "[ERROR] El Metodo #" + args + " está siendo usado en la tabla Pescas"
         return json.dumps(text, ensure_ascii=False).encode('utf-8').decode()
     try:
         conn = sql.connect("./DataSource/PescasArtesanalesDB.sqlite")

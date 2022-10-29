@@ -15,16 +15,16 @@ function update_table() {
 }
 
 // CREATE
-document.querySelector(".crud_create").onclick = function (){ 
+document.querySelector(".crud_create").onclick = function () {
     create_name = document.getElementById("create_name");
-    if(!create_name.value) {       
+    if (!create_name.value) {
         modal.style.display = "block"
         modalText.innerHTML = "La entrada no puede estar vacía";
         clean_inputs();
     }
     else {
         try {
-            eel.create(table_name,create_name.value);
+            eel.create(table_name, create_name.value);
             update_table();
             modal.style.display = "block"
             modalText.innerHTML = "Cuenca creada correctamente";
@@ -33,18 +33,18 @@ document.querySelector(".crud_create").onclick = function (){
             console.log(error)
         }
     }
-}  
+}
 
 // READ
 window.onload = function () {
     eel.select(table_name)(get_data);
 }
 
-function get_data(output){
+function get_data(output) {
     json_list = JSON.parse(output);
-    string_table = "<thead><tr><th>Id método</th><th>Nombre del método</th></tr></thead><body>";    
+    string_table = "<thead><tr><th>Id método</th><th>Nombre del método</th></tr></thead><body>";
     string_select = "<option disabled selected value style='color:whitesmoke'></option>";
-    json_list.forEach(row => string_table = string_table.concat("<tr><td>", row[0], "</td>", "<td>", row[1] ,"</td></tr>"));
+    json_list.forEach(row => string_table = string_table.concat("<tr><td>", row[0], "</td>", "<td>", row[1], "</td></tr>"));
     json_list.forEach(row => string_select = string_select.concat("<option value='", row[0], "'>", row[0], " - ", row[1], "</option>"));
     string_table = string_table.concat("</body>")
     document.getElementById("data").innerHTML = string_table;
@@ -53,17 +53,17 @@ function get_data(output){
 }
 
 //UPDATE
-document.querySelector(".crud_update").onclick = function (){ 
+document.querySelector(".crud_update").onclick = function () {
     update_id = document.getElementById("update_id");
     update_new_name = document.getElementById("update_name");
     update_args = [update_id.value, update_new_name.value];
-    if(!update_args[0] || !update_args[1]) {
-        if (!update_args[0]){
+    if (!update_args[0] || !update_args[1]) {
+        if (!update_args[0]) {
             modal.style.display = "block"
             modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta la cuenca que desea modificar";
             clean_inputs();
         }
-        else{
+        else {
             modal.style.display = "block"
             modalText.innerHTML = "Debe seleccionar un valor para todos los campos - Falta el nuevo nombre";
             clean_inputs();
@@ -82,47 +82,44 @@ document.querySelector(".crud_update").onclick = function (){
         }
     }
     clean_inputs();
-} 
+}
 
 //DELETE
-document.querySelector(".crud_delete").onclick = function (){ 
+document.querySelector(".crud_delete").onclick = function () {
     delete_id = document.getElementById("delete_id");
 
-    if(!delete_id.value){
+    if (!delete_id.value) {
         modal.style.display = "block"
         modalText.innerHTML = "Debe seleccionar la cuenca que desea eliminar";
         clean_inputs();
     }
     else {
         eel.delete(table_name, delete_id.value)(deleteRegistro);
-        /*
-        update_table();
-        modal.style.display = "block"
-        modalText.innerHTML = "Cuenca "+delete_id.value+" eliminada correctamente";
-        clean_inputs();
-        */
     }
 }
 
-function deleteRegistro(output){
-    clean_inputs();
-    jsonOutput = JSON.parse(output);
-    var tipo = typeof(output);
-
-    let result = output.startWith("[ERROR]");
-    alert (result);
-    
-    if ( output.startWith("[ERROR]")){
-        alert("Entra al método deleteRegistro");
-        modal.style.display = "block"
-        modalText.innerHTML = output;
+function deleteRegistro(output) {
+    if (output != null) {
         clean_inputs();
-        return
+        let array = output.split(" ");
+        array[0] = array[0].replace('"', '');
+        if (array[0] == "[ERROR]") {
+            modal.style.display = "block"
+            modalText.innerHTML = output;
+            clean_inputs();
+            return
+        }
+        else {
+            update_table();
+            modal.style.display = "block"
+            modalText.innerHTML = "Cuenca " + delete_id.value + " eliminada correctamente";
+            clean_inputs();
+        }
     }
-    else{
+    else {
         update_table();
         modal.style.display = "block"
-        modalText.innerHTML = "Cuenca "+delete_id.value+" eliminada correctamente";
+        modalText.innerHTML = "Cuenca " + delete_id.value + " eliminada correctamente";
         clean_inputs();
     }
 }
