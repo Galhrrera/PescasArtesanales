@@ -52,4 +52,14 @@ Las actividades de pesca tendrán los siguientes atributos:
 ![Diagrama entidad relación](https://github.com/Galhrrera/PescasArtesanales/blob/main/imgs/diagrama%20entidad%20relaci%C3%B3n.jpg)
 
 ## Explicación de la implementación
+
+La solución, como se ha mencionado, fue desarrollada haciendo uso de Python, HTML, CSS y JavaScript.
+
+- En la aplicación hay 3 opciones en el menú lateral izquierdo, las cuales hacen referencia cada una a una de las tablas u opciones disponibles: **pescas, métodos y cuencas**
+- Cada una de las tablas cuenca con sus respectivas operaciones CRUD de la siguiente forma:
+  - La apliación realiza un READ todo el tiempo, desde que se inicia la aplicación, cada vez que se actualiza o se carga la ventana y cada vez que hay cambios (las demás operaciones)
+  - Cada tabla tiene habilitada la opción para crear un registro en su respectiva tabla. En el caso de las pescas, la aplicación mostrará todas las cuencas y métodos disponibles (lee la base de datos para cargar las opciones) y permite seleccionar la fecha e ingresar el peso de la pesca. En las demás tablas, se podrá ingresar el nombre según corresponda y desee.
+  - Cada tabla tiene habilitada la opción de actualizar un registro. En cada caso se debe seleccionar la opción que desea actualizar y, adicionalmente, deberá indicar los datos que se actualizarán (en el caso de las pescas puede actualizar la cuenca, el método, la fecha y el peso; en el caso de las demás tablas, podrá ingresar un nuevo nombre para la cuenca o el método, según corresponda).
+  - Cada tabla tiene habilitada la opción de eliminar un registro. En todos los casos, seleccione uno de los registros y elimínelo.
+ 
 ## Comentarios
