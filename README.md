@@ -61,5 +61,6 @@ La solución, como se ha mencionado, fue desarrollada haciendo uso de Python, HT
   - Cada tabla tiene habilitada la opción para crear un registro en su respectiva tabla. En el caso de las pescas, la aplicación mostrará todas las cuencas y métodos disponibles (lee la base de datos para cargar las opciones) y permite seleccionar la fecha e ingresar el peso de la pesca. En las demás tablas, se podrá ingresar el nombre según corresponda y desee.
   - Cada tabla tiene habilitada la opción de actualizar un registro. En cada caso se debe seleccionar la opción que desea actualizar y, adicionalmente, deberá indicar los datos que se actualizarán (en el caso de las pescas puede actualizar la cuenca, el método, la fecha y el peso; en el caso de las demás tablas, podrá ingresar un nuevo nombre para la cuenca o el método, según corresponda).
   - Cada tabla tiene habilitada la opción de eliminar un registro. En todos los casos, seleccione uno de los registros y elimínelo.
- 
+ - La lógica SQL (conexión a la base de datos, excepciones, select, update e insert to a la base de datos, entre otras) fue realizada 100% en python (ver main.py)
+ - El frontend (UI) se realizó 100% con HTML, CSS y JS (ver /www)
 ## Comentarios
