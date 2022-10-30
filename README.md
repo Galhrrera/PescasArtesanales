@@ -12,6 +12,8 @@ Se debe desarrollar una aplicación que permita hacer uso de las operaciones CRU
 
 [Explicación de la implementación](https://github.com/Galhrrera/PescasArtesanales/blob/main/README.md#explicaci%C3%B3n-de-la-implementaci%C3%B3n)
 
+[Comentarios](https://github.com/Galhrrera/PescasArtesanales/blob/main/README.md#explicaci%C3%B3n-de-la-implementaci%C3%B3n)
+
 ## Requisitos para ejecutar la aplicación
 - pip
 - python 3 (El desarrollo se realizó en la versión 3.9.7)
@@ -81,3 +83,4 @@ La solución, como se ha mencionado, fue desarrollada haciendo uso de Python, HT
 - Existe un control de excepciones básico, como lo es la prohibición la creación y actualización de registros con valores seleccionados / ingresados nulos
 - No es posible eliminar una cuenca o un método si está siendo usado en la tabla pescas por alguno de sus registros, debido a las *llaves*
 - La aplicación NO es responsive, por lo que **recomienda usar la resolución por defecto (1920 x 1080)** para evitar disgustes visuales.
+- Las tablas (gráficamente dentro de la aplicación) tienen una altura predeterminada y, en caso de tener muchos registros, se habilitará un scroll en cada tabla.
