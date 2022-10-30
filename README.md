@@ -47,6 +47,9 @@ Las actividades de pesca tendrán los siguientes atributos:
 - Fecha de la actividad
 - Peso del pescado obtenido en la actividad
 
+### Diagrama entidad relación de la solución: 
+
+![Diagrama entidad relación](https://github.com/Galhrrera/PescasArtesanales/blob/main/imgs/diagrama%20entidad%20relaci%C3%B3n.jpg)
 
 ## Explicación de la implementación
 ## Comentarios
