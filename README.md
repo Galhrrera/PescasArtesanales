@@ -68,3 +68,6 @@ La solución, como se ha mencionado, fue desarrollada haciendo uso de Python, HT
    - Como claración, el archivo *eel.js* no existe dentro del proyecto, sin embargo, **eel** se encarga de cargarlo implícito en el proyecto.
  
 ## Comentarios
+- Existe un control de excepciones básico, como lo es la prohibición la creación y actualización de registros con valores seleccionados / ingresados nulos
+- No es posible eliminar una cuenca o un método si está siendo usado en la tabla pescas por alguno de sus registros, debido a las *llaves*
+- La aplicación NO es responsive, por lo que **recomienda usar la resolución por defecto (1920 x 1080)** para evitar disgustes visuales.
