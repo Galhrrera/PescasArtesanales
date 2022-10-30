@@ -29,9 +29,24 @@ La aplicación se puede ejecutar directamente con python tras clonar este reposi
 3. En la terminal ejecute el archivo **main.py** utilizando python: `python.exe main.py`
 
 Sí cumple con los requisitos mencionados, clonó correctamente el repositorio y no hubieron problemas, tras estos pasos se debería abrir la aplicación haciendo uso del motor de google chrome y debería poder ver algo como esto:
+
 ![Ventana inicial de la aplicación](https://github.com/Galhrrera/PescasArtesanales/blob/main/imgs/ventanaInicial.png)
+
+A partir de este momento podrá navegar a través de las distintas opciones y, adicionalmente, podrá realizar las operaciones CRUD.
 
 
 ## Dominio del problema: Pescas artesanales
+
+La Autoridad Nacional de Acuicultura y Pesca, AUNAP, quiere identificar cuales son las tendencias actuales en el manejo de la pesca artesanal en las principales cuencas hidrográficas del país, los métodos artesanales más comunes que se utilizan.
+
+Las actividades de pesca tendrán los siguientes atributos:
+
+- Consecutivo de la actividad
+- Cuenca
+- Método de la pesca
+- Fecha de la actividad
+- Peso del pescado obtenido en la actividad
+
+
 ## Explicación de la implementación
 ## Comentarios
