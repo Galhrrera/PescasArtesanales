@@ -63,4 +63,6 @@ La solución, como se ha mencionado, fue desarrollada haciendo uso de Python, HT
   - Cada tabla tiene habilitada la opción de eliminar un registro. En todos los casos, seleccione uno de los registros y elimínelo.
  - La lógica SQL (conexión a la base de datos, excepciones, select, update e insert to a la base de datos, entre otras) fue realizada 100% en python (ver main.py)
  - El frontend (UI) se realizó 100% con HTML, CSS y JS (ver /www)
+ - **eel** es el traductor entre python y js. cada uno de los métodos declarados en python deben ser entonces expuestos utiizando la instrucción `@eel.expose` antes de la declaración de cada método.
+ - Es mandatorio añadir dentro del cuerpo HTML la línea `<script type="text/javascript" src="/eel.js"></script>` para lograr la correcta traducción de los métodos de python a js y viceversa.
 ## Comentarios
