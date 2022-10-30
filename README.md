@@ -10,6 +10,8 @@ Se debe desarrollar una aplicación que permita hacer uso de las operaciones CRU
 
 [Dominio del problema](https://github.com/Galhrrera/PescasArtesanales/blob/main/README.md#dominio-del-problema-pescas-artesanales)
 
+[Explicación de la implementación](https://github.com/Galhrrera/PescasArtesanales/blob/main/README.md#explicaci%C3%B3n-de-la-implementaci%C3%B3n)
+
 ## Requisitos para ejecutar la aplicación
 - pip
 - python 3 (El desarrollo se realizó en la versión 3.9.7)
